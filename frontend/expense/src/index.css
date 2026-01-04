@@ -24,7 +24,7 @@
     body {
 
 
-        background-color: cadetblue;
+        background-color: white;
 
         font-family: "Inter", sans-serif;
 
@@ -62,10 +62,22 @@
 
 .button-primary{
 
-    background-color: azure;
 
-    padding-right: 10px;
-    padding-left: 10px;
+    @apply w-full text-sm font-medium text-white bg-violet-500 shadow-lg shadow-purple-600/5 p-[10px] rounded-md my-1 hover:bg-purple-600/15 hover:text-purple-600;
+
+}
 
 
+/* This is for stuff from Recent Transacations */
+
+.card {
+
+    @apply bg-white p-6 rounded-2xl shadow-gray-100 border border-gray-200/50;
+
+
+}
+
+.card-button {
+
+    @apply text-sm font-medium text-black bg-green-500/10 p-2 rounded-lg hover:bg-gray-500/20 hover:text-black;
 }

@@ -10,6 +10,17 @@ import { Link } from 'react-router-dom';
 
 import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector';
 
+import { UserContext } from "../../context/userContext";
+import { useContext } from 'react';
+
+import uploadImage from "../../utils/uploadImage";
+
+import axiosInstance from '../../utils/axiosInstance';
+
+import { API_PATHS } from '../../utils/apiPath';
+
+import { validateEmail } from '../../utils/helper';
+
 const SignUp = () => {
 
     const [profilePic, setProfilePic] = useState(null);
@@ -19,11 +30,100 @@ const SignUp = () => {
 
     const [error, setError] = useState(null);
 
+    
+    const {updateUser} = useContext(UserContext);
+
     const navigate = useNavigate();
 
 
     //Handle submit for sign up form
-    const handleSubmit = async (e) => {}
+    const handleSubmit = async (e) => {
+
+
+        e.preventDefault();
+
+        let profileImageUrl = "";
+
+        if (!fullName){
+
+            setError("Please enter your full name");
+
+            return;
+        }
+
+        if (!validateEmail(email)){
+
+            setError("Please enter a valid email address");
+
+            return;
+        }
+
+        if (!password){
+
+            setError("Please enter your password");
+
+            return;
+        }
+
+        //console.log("passed validation");
+
+
+        setError("");
+
+
+        //SignUp API Call
+
+        try{
+
+
+            //upload image
+            if (profilePic){
+
+                const imgUploadRes = await uploadImage(profilePic);
+
+                profileImageUrl = imgUploadRes.imageUrl || "";
+
+
+            }
+
+
+
+            const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+
+                fullName,
+                email,
+                password,
+                profileImageUrl
+            });
+
+            const { token, user } = response.data;
+
+            if (token) {
+
+                localStorage.setItem("token", token);
+
+                updateUser(user);
+
+                navigate("/dashboard");
+
+            }
+
+        } catch (error) {
+
+            if (error.response && error.response.data.message){
+
+                setError(error.response.data.message);
+
+            } else {
+
+                setError("An error occurred. Please try again.");
+
+            }   
+
+
+        }
+
+    }
 
     
 

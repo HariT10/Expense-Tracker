@@ -11,7 +11,7 @@ const AuthLayout = ({ children }) => {
 
         <div className="widthScreen heightScreen md:w-[60vw] px-12 pt-8 pb-12">
 
-            <h2 className="text-lg font-medium text-black">Expsnese Trackers</h2>
+            <h2 className="text-lg font-medium text-black">Expense Trackers</h2>
 
             {children}
 

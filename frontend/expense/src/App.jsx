@@ -24,40 +24,44 @@ import Home from "./pages/Dashboard/Home";
 import Income from "./pages/Dashboard/Income";
 
 import Expense from "./pages/Dashboard/Expense";
+import UserProvider from './context/userContext';
 
 const App = () => {
   //const [count, setCount] = useState(0)
 
   return (
-  
-    <div>
-      <Router>
+    <UserProvider>
 
-        <Routes>
+      <div>
+            <Router>
 
-          <Route path="/" element={<Root/>} />
+              <Routes>
 
-          <Route path="/login" exact element={<Login />} />
+                <Route path="/" element={<Root/>} />
 
-          <Route path="/signUp" exact element={<SignUp />} />
+                <Route path="/login" exact element={<Login />} />
 
-          <Route path="/home" exact element={<Home />} />
+                <Route path="/signUp" exact element={<SignUp />} />
 
-          <Route path="/income" exact element={<Income />} />
+                <Route path="/dashboard" exact element={<Home />} />
 
-          <Route path="/expense" exact element={<Expense />} />
+                <Route path="/income" exact element={<Income />} />
 
-
-
-        </Routes>
+                <Route path="/expense" exact element={<Expense />} />
 
 
 
+              </Routes>
 
-      </Router>
+            </Router>
 
-      
-    </div>
+            
+        </div>
+
+
+
+    </UserProvider>
+    
 
 
 
