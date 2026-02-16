@@ -19,7 +19,7 @@ import{
 
 //import the different pages
 import Login from "./pages/auth/Login";
-import SignUp from "./pages/Auth/SignUp";
+import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/Dashboard/Home";
 import Income from "./pages/Dashboard/Income";
 
