@@ -18,6 +18,7 @@ import{
 
 
 //import the different pages
+//changed from Auth to auth, same for the folder name
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import Home from "./pages/Dashboard/Home";
